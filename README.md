@@ -55,136 +55,201 @@ These stakeholder discussions will allow the team to convert the initial ideas p
 
 The following use cases describe some of the main interactions between ChargeMate staff and the ChargeMate Ops system. These are initial use cases based on the provided project brief and may be updated or expanded after further stakeholder discussions with Team A.
 
+## Use Case Descriptions
+
+---
+
 ### UC-01 – View Station Status
 
-**Primary Actor:** ChargeMate Operator
-
 **Goal:**  
-Allow an operator to view the current status of rental stations located throughout Harbour North Plaza.
+Allow a ChargeMate operator to view the current operational status of rental stations across Harbour North Plaza.
 
-**Preconditions:**
-- The operator is authorised to access ChargeMate Ops.
-- Station information is available to the system.
+**Preconditions:**  
+- The operator has access to ChargeMate Ops.
+- The rental stations are registered in the system.
+- Station information is available to ChargeMate Ops.
+
+**Success End Condition:**  
+The operator successfully views the current status and relevant information for a selected rental station.
+
+**Failed End Condition:**  
+The operator is unable to retrieve the station information or the system cannot provide a reliable status.
+
+**Primary Actor:**  
+ChargeMate Operator
+
+**Secondary Actors:**  
+- Rental Station System
+- Customer-Facing ChargeMate System
 
 **Trigger:**  
-The operator wants to check the current condition or availability of one or more rental stations.
+The operator wants to check whether a rental station is operating correctly or requires staff attention.
 
-**Main Flow:**
-1. The operator accesses the station monitoring section of ChargeMate Ops.
-2. The system retrieves information about the rental stations.
-3. The system displays the available stations and their current status.
-4. The operator selects a station to view more information.
-5. The system displays available operational information for the selected station.
-6. The operator determines whether the station is operating normally or requires attention.
+#### Description / Main Success Scenario
 
-**Alternative / Exception Flows:**
-- If station information cannot be retrieved, the system informs the operator that the information is currently unavailable.
-- If a station has an identified problem, the system indicates that the station may require staff attention.
-- If the information for a station appears outdated or inconsistent, the system should make this clear to the operator.
+| Step | Action |
+|---|---|
+| 1 | The operator opens the station monitoring section in ChargeMate Ops. |
+| 2 | The system retrieves the latest available information about the rental stations. |
+| 3 | The system displays the list of rental stations and their current status. |
+| 4 | The operator selects a station to view more details. |
+| 5 | The system displays information such as station status, power bank availability and any identified issues. |
+| 6 | The operator reviews the information and determines whether the station requires attention. |
 
-**Postconditions:**
-- The operator has viewed the available status information for the selected station.
-- No station information is changed simply by viewing its status.
+#### Alternative Flows
 
+| Step | Action |
+|---|---|
+| 2A | If the system cannot retrieve station information, it informs the operator that the data is currently unavailable. |
+| 3A | If a station has an identified fault or operational issue, the system clearly marks the station as requiring attention. |
+| 5A | If the information appears outdated or inconsistent, the system indicates this to the operator. |
+
+---
 
 ### UC-02 – Track a Power Bank
 
-**Primary Actor:** ChargeMate Operator
-
 **Goal:**  
-Allow an operator to locate and view information about an individual ChargeMate power bank.
+Allow a ChargeMate operator to locate and view the current information associated with an individual power bank.
 
-**Preconditions:**
-- The operator is authorised to access ChargeMate Ops.
-- The power bank is registered within the ChargeMate system.
+**Preconditions:**  
+- The operator has access to ChargeMate Ops.
+- The power bank is registered in the system.
+- The power bank has a unique identifier.
+
+**Success End Condition:**  
+The operator successfully views the available status and location information for the selected power bank.
+
+**Failed End Condition:**  
+The requested power bank cannot be found or reliable information about the device cannot be retrieved.
+
+**Primary Actor:**  
+ChargeMate Operator
+
+**Secondary Actors:**  
+- Rental Station System
+- Customer-Facing ChargeMate System
 
 **Trigger:**  
-The operator needs to check the location or current status of a particular power bank.
+The operator needs to locate a particular power bank or check its current status.
 
-**Main Flow:**
-1. The operator accesses the power bank management section.
-2. The operator searches for or selects a power bank.
-3. The system retrieves the available information for the selected power bank.
-4. The system displays the power bank's unique identifier and current status.
-5. The system displays its current or most recently known location where available.
-6. The operator reviews the information and determines whether further action is required.
+#### Description / Main Success Scenario
 
-**Alternative / Exception Flows:**
-- If the power bank cannot be found, the system informs the operator.
-- If the location of the power bank is unknown, the system displays the location as unavailable or unknown.
-- If different parts of the system contain conflicting information about the power bank, the system should indicate that the status requires investigation.
+| Step | Action |
+|---|---|
+| 1 | The operator opens the power bank management section. |
+| 2 | The operator searches for or selects a power bank using its unique identifier. |
+| 3 | The system retrieves the available information for the selected power bank. |
+| 4 | The system displays the power bank's identifier, current status and location information. |
+| 5 | The operator reviews the information. |
+| 6 | The operator determines whether any further operational action is required. |
 
-**Postconditions:**
-- The operator has viewed the available information about the selected power bank.
-- The operator may decide to perform another operational action if a problem has been identified.
+#### Alternative Flows
 
+| Step | Action |
+|---|---|
+| 2A | If the operator enters an invalid or unknown power bank identifier, the system informs them that the device could not be found. |
+| 3A | If the location of the power bank is unavailable, the system displays the location as unknown or unavailable. |
+| 4A | If conflicting information exists for the power bank, the system indicates that the status requires investigation. |
+
+---
 
 ### UC-03 – Report and Manage a Faulty Power Bank
 
-**Primary Actor:** ChargeMate Operator
-
 **Goal:**  
-Allow an operator to record and manage a power bank that has been identified as faulty.
+Allow a ChargeMate operator to record, manage and resolve a fault associated with a power bank.
 
-**Preconditions:**
-- The operator is authorised to access ChargeMate Ops.
-- The power bank exists within the ChargeMate system.
+**Preconditions:**  
+- The operator has access to ChargeMate Ops.
+- The affected power bank is registered in the system.
+- The operator has permission to record faults.
+
+**Success End Condition:**  
+The fault is successfully recorded against the correct power bank and the device is marked as requiring attention or unavailable.
+
+**Failed End Condition:**  
+The fault is not recorded successfully, or the operator cannot identify the affected power bank.
+
+**Primary Actor:**  
+ChargeMate Operator
+
+**Secondary Actors:**  
+- Rental Station System
+- Customer-Facing ChargeMate System
+- Maintenance Staff, if applicable
 
 **Trigger:**  
-A power bank is reported or identified as faulty and requires staff attention.
+A power bank is reported or identified as faulty.
 
-**Main Flow:**
-1. The operator searches for and selects the affected power bank.
-2. The system displays the current information about the power bank.
-3. The operator selects an option to report or record a fault.
-4. The operator enters the available information about the fault.
-5. The system records the fault against the selected power bank.
-6. The system updates the power bank's operational status.
-7. The system indicates that the power bank requires attention.
-8. The operator can later review the fault and update its status after the issue has been investigated.
+#### Description / Main Success Scenario
 
-**Alternative / Exception Flows:**
-- If the power bank cannot be identified, the operator is informed that the device could not be found.
-- If required fault information has not been entered, the system asks the operator to provide the missing information.
-- If the fault cannot be recorded because of a system problem, the system informs the operator and does not incorrectly mark the issue as successfully recorded.
+| Step | Action |
+|---|---|
+| 1 | The operator searches for and selects the affected power bank. |
+| 2 | The system displays the current information for the selected power bank. |
+| 3 | The operator selects the option to report a fault. |
+| 4 | The operator enters details about the fault. |
+| 5 | The system validates the entered information. |
+| 6 | The system records the fault against the selected power bank. |
+| 7 | The system updates the power bank status to indicate that it requires attention or is unavailable. |
+| 8 | The operator later reviews the fault after the issue has been investigated. |
+| 9 | Once resolved, the operator updates the fault status. |
 
-**Postconditions:**
-- The fault is recorded against the appropriate power bank.
-- The power bank is identifiable as requiring attention.
-- The fault remains available for staff to review until it has been appropriately resolved.
+#### Alternative Flows
 
+| Step | Action |
+|---|---|
+| 1A | If the power bank cannot be found, the system informs the operator and the fault cannot be recorded against that device. |
+| 4A | If required fault information is missing, the system asks the operator to provide the missing details. |
+| 6A | If the system cannot save the fault, the operator is informed that the fault was not successfully recorded. |
+| 9A | If the issue has not been resolved, the fault remains active and the power bank continues to be marked as requiring attention. |
 
 ### UC-04 – Redistribute Power Banks Between Stations
 
-**Primary Actor:** ChargeMate Operator
-
 **Goal:**  
-Allow an operator to manage the movement of power banks between rental stations when redistribution is required.
+Allow a ChargeMate operator to manage the movement of power banks between rental stations to maintain suitable availability across Harbour North Plaza.
 
-**Preconditions:**
-- The operator is authorised to access ChargeMate Ops.
-- The relevant stations and power banks are registered in the system.
-- The power bank is available for redistribution.
+**Preconditions:**  
+- The operator has access to ChargeMate Ops.
+- The source and destination stations are registered in the system.
+- The selected power banks are available for redistribution.
+- The destination station has capacity to accept additional power banks.
+
+**Success End Condition:**  
+The selected power banks are successfully moved and the system reflects their updated location and status.
+
+**Failed End Condition:**  
+The redistribution cannot be completed because the selected power banks are unavailable, the destination station cannot accept them, or the system cannot update the movement.
+
+**Primary Actor:**  
+ChargeMate Operator
+
+**Secondary Actors:**  
+- Rental Station System
+- Other ChargeMate Staff responsible for physically moving the devices
 
 **Trigger:**  
-The operator identifies that power banks should be moved between stations, such as when one location has low availability while another has additional available devices.
+The operator identifies that one station requires additional available power banks while another station has devices that can be redistributed.
 
-**Main Flow:**
-1. The operator reviews the status of rental stations.
-2. The operator identifies a station that may require additional power banks.
-3. The operator identifies another station from which suitable power banks can be moved.
-4. The operator selects the relevant power bank or power banks for redistribution.
-5. The system records the redistribution activity.
-6. The power banks are physically moved between the relevant stations.
-7. The system updates the recorded location or status of the affected power banks.
-8. The operator confirms that the redistribution has been completed.
+#### Description / Main Success Scenario
 
-**Alternative / Exception Flows:**
-- If there are no suitable power banks available for redistribution, the system informs the operator.
-- If a selected power bank is faulty or otherwise unavailable, it should not be treated as normally available for redistribution.
-- If the destination station cannot accept the selected power bank, the operator is informed and the redistribution is not recorded as completed.
+| Step | Action |
+|---|---|
+| 1 | The operator reviews the current status and availability of rental stations. |
+| 2 | The operator identifies a station with low power bank availability. |
+| 3 | The operator identifies another station with suitable power banks available for redistribution. |
+| 4 | The operator selects the power bank or power banks to be moved. |
+| 5 | The system records the planned redistribution. |
+| 6 | The selected power banks are physically moved from the source station to the destination station. |
+| 7 | The operator confirms that the redistribution has been completed. |
+| 8 | The system updates the recorded location and status of the affected power banks. |
+| 9 | The system displays the updated availability of both stations. |
 
-**Postconditions:**
-- Successfully redistributed power banks are associated with their new station.
-- The system reflects the updated operational situation of the affected stations.
+#### Alternative Flows
 
+| Step | Action |
+|---|---|
+| 3A | If no suitable power banks are available for redistribution, the system informs the operator. |
+| 4A | If a selected power bank is faulty or unavailable, the system prevents it from being treated as available for redistribution. |
+| 5A | If the destination station is full or unavailable, the redistribution cannot proceed and the operator is informed. |
+| 7A | If the physical movement is not completed, the operator does not confirm the redistribution and the system should not record it as successfully completed. |
+| 8A | If the system cannot update the new location, it informs the operator that the redistribution record may require further attention. |
